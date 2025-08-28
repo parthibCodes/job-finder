@@ -4,12 +4,18 @@ import dotenv from "dotenv";
 dotenv.config();
 import recruiterRoutes from "./routes/recruiterRoutes.js";
 import applicantRoutes from "./routes/applicantRoutes.js";
+import cors from "cors";
+
 const app = express();
 const port = process.env.PORT || 3000;
+
+// Enable CORS for all routes
+app.use(cors());
 app.use(express.json());
-app.use('/api/recruiter',recruiterRoutes);
-app.use('/api/applicant',applicantRoutes);
-app.listen(port, '0.0.0.0', () => {
-    console.log(`Server is running on port ${port}`);
+
+app.use("/api/recruiter", recruiterRoutes);
+app.use("/api/applicant", applicantRoutes);
+
+app.listen(port, "0.0.0.0", () => {
+  console.log(`Server is running on port ${port}`);
 });
-  
